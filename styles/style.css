@@ -120,11 +120,27 @@ section.controls p {
   border-radius: 2rem;
   min-height: 30rem;
   width: 40%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: auto;
+      -ms-flex-align: auto;
+          align-items: auto;
+  display: none;
+  -webkit-transition: all 2s ease-in-out;
+  transition: all 2s ease-in-out;
 }
 
 .modal button.close {
-  display: block;
-  margin-left: auto;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
   background: black;
   border: none;
   height: 3rem;
@@ -138,17 +154,43 @@ section.controls p {
 }
 
 .modal header {
-  width: 70%;
-  margin: 3rem auto;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  margin: 4rem 0;
+}
+
+.modal form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .modal form input {
-  display: block;
-  margin: 3rem auto;
+  margin-bottom: 4rem;
+  padding: 1.5rem;
 }
 
 .modal form button {
-  display: block;
-  margin: 3rem auto;
+  padding: 1rem 2rem;
+  border: none;
+  background: green;
+  color: white;
+}
+
+.modal-active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 /*# sourceMappingURL=style.css.map */

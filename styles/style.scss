@@ -99,10 +99,12 @@ section.controls{
     border-radius: 2rem; 
     min-height: 30rem;
     width: 40%; 
+    @include flex(column, flex-start, auto); 
+    display: none; 
+    transition: all 2s ease-in-out; 
 
     button.close{
-        display: block; 
-        margin-left: auto; 
+        align-self: flex-end; 
         background: black; 
         border: none; 
         height: 3rem; 
@@ -115,18 +117,25 @@ section.controls{
     }
 
     header{
-        width: 70%; 
-        margin: 3rem auto; 
+        align-self: center;
+        margin: 4rem 0; 
     }
 
     form{
+        @include flex(column, center, center); 
         input{
-            display: block;
-            margin: 3rem auto; 
+            margin-bottom: 4rem; 
+            padding: 1.5rem; 
         }
         button{
-            display: block; 
-            margin: 3rem auto; 
+            padding: 1rem 2rem ;
+            border: none; 
+            background: green; 
+            color: white; 
         }
     }
+}
+
+.modal-active{
+    display: flex; 
 }
