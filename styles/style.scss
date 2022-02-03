@@ -26,6 +26,10 @@ body{
     font-family: 'Poppins', sans-serif;
 }
 
+button{
+    cursor: pointer; 
+}
+
 .resize-svg{
     display: block;
     margin: auto; 
@@ -83,12 +87,24 @@ section.controls{
                 fill: white; 
             }
         }            
-    p{
+    label{
+        display: block; 
         padding-top: 2rem;    
     }
 }
 
-// Modal
+// Modals
+
+.modal-container{
+    background: rgba(0, 0, 0, 0.308); 
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    height: 100vh;
+    width: 100vw; 
+    z-index: 1; 
+    display: none; 
+}
 
 .modal{
     position: absolute; 
@@ -138,4 +154,8 @@ section.controls{
 
 .modal-active{
     display: flex; 
+}
+
+.modal-container-active{
+    display: block; 
 }
