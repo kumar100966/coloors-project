@@ -136,6 +136,7 @@ section.controls label {
   border-radius: 2rem;
   min-height: 30rem;
   width: 40%;
+  display: none;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -149,9 +150,6 @@ section.controls label {
   -webkit-box-align: auto;
       -ms-flex-align: auto;
           align-items: auto;
-  display: none;
-  -webkit-transition: all 2s ease-in-out;
-  transition: all 2s ease-in-out;
 }
 
 .modal button.close {
@@ -169,14 +167,14 @@ section.controls label {
   fill: white;
 }
 
-.modal header {
+.save-modal header {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
   margin: 4rem 0;
 }
 
-.modal form {
+.save-modal form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -192,16 +190,31 @@ section.controls label {
           align-items: center;
 }
 
-.modal form input {
+.save-modal form input {
   margin-bottom: 4rem;
   padding: 1.5rem;
 }
 
-.modal form button {
+.save-modal form button {
   padding: 1rem 2rem;
   border: none;
   background: green;
   color: white;
+}
+
+.copied-modal {
+  min-height: 25rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.copied-modal header {
+  padding: 4rem 0;
+}
+
+.copied-modal p {
+  padding: 3rem 0;
 }
 
 .modal-active {

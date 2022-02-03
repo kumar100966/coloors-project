@@ -115,9 +115,8 @@ section.controls{
     border-radius: 2rem; 
     min-height: 30rem;
     width: 40%; 
-    @include flex(column, flex-start, auto); 
     display: none; 
-    transition: all 2s ease-in-out; 
+    @include flex(column, flex-start, auto); 
 
     button.close{
         align-self: flex-end; 
@@ -131,7 +130,9 @@ section.controls{
             fill: white; 
         }
     }
+}
 
+.save-modal{
     header{
         align-self: center;
         margin: 4rem 0; 
@@ -149,6 +150,18 @@ section.controls{
             background: green; 
             color: white; 
         }
+    }
+}
+
+.copied-modal{
+    min-height: 25rem;
+    align-items: center;
+    header{
+        padding: 4rem 0; 
+    }
+
+    p{
+        padding: 3rem 0; 
     }
 }
 
