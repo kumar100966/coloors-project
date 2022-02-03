@@ -21,9 +21,9 @@
   <body>
     <main>
       <section class="colors">
-        <div class="palette palette1">
+        <div class="palette palette0">
           <header class="hex-value">lorem</header>
-          <button>
+          <button class="activate-panel">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -47,10 +47,55 @@
               />
             </svg>
           </button>
+          <div class="color-control" data-control="0">
+            <button class="close-color-control">x</button>
+            <label for="hue-control">Hue</label>
+            <input type="range" min="0" max="360" step="1" name="hue" id="hue">
+            <label for="brightness">brightness</label>
+            <input type="range" min="0" max="1" step=".01" name="brightness" id="brightness">
+            <label for="Saturation" min="0" max="100" step="1">Saturation</label>
+            <input type="range" name="saturation" id="saturation">
+          </div>
+        </div>
+        <div class="palette palette1">
+          <header class="hex-value">lorem</header>
+          <button class="activate-panel">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M6 18h-2v5h-2v-5h-2v-3h6v3zm-2-17h-2v12h2v-12zm11 7h-6v3h2v12h2v-12h2v-3zm-2-7h-2v5h2v-5zm11 14h-6v3h2v5h2v-5h2v-3zm-2-14h-2v12h2v-12z"
+              />
+            </svg>
+          </button>
+          <button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 10v-4c0-3.313-2.687-6-6-6s-6 2.687-6 6v3h2v-3c0-2.206 1.794-4 4-4s4 1.794 4 4v4h-4v14h18v-14h-12z"
+              />
+            </svg>
+          </button>
+          <div class="color-control" data-control="1">
+            <button class="close-color-control">x</button>
+            <label for="hue-control">Hue</label>
+            <input type="range" min="0" max="360" step="1" name="hue" id="hue">
+            <label for="brightness">brightness</label>
+            <input type="range" min="0" max="1" step=".01" name="brightness" id="brightness">
+            <label for="Saturation" min="0" max="100" step="1">Saturation</label>
+            <input type="range" name="saturation" id="saturation">
+          </div>
         </div>
         <div class="palette palette2">
           <header class="hex-value">lorem</header>
-          <button>
+          <button class="activate-panel">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -74,10 +119,19 @@
               />
             </svg>
           </button>
+          <div class="color-control " data-control="2">
+            <button class="close-color-control">x</button>
+            <label for="hue-control">Hue</label>
+            <input type="range" min="0" max="360" step="1" name="hue" id="hue">
+            <label for="brightness">brightness</label>
+            <input type="range" min="0" max="1" step=".01" name="brightness" id="brightness">
+            <label for="Saturation" min="0" max="100" step="1">Saturation</label>
+            <input type="range" name="saturation" id="saturation">
+          </div>
         </div>
         <div class="palette palette3">
           <header class="hex-value">lorem</header>
-          <button>
+          <button class="activate-panel">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -101,10 +155,19 @@
               />
             </svg>
           </button>
+          <div class="color-control " data-control="3">
+            <button class="close-color-control">x</button>
+            <label for="hue-control">Hue</label>
+            <input type="range" min="0" max="360" step="1" name="hue" id="hue">
+            <label for="brightness">brightness</label>
+            <input type="range" min="0" max="1" step=".01" name="brightness" id="brightness">
+            <label for="Saturation" min="0" max="100" step="1">Saturation</label>
+            <input type="range" name="saturation" id="saturation">
+          </div>
         </div>
         <div class="palette palette4">
           <header class="hex-value">lorem</header>
-          <button>
+          <button class="activate-panel">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -128,35 +191,18 @@
               />
             </svg>
           </button>
-        </div>
-        <div class="palette palette5">
-          <header>lorem</header>
-          <button>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M6 18h-2v5h-2v-5h-2v-3h6v3zm-2-17h-2v12h2v-12zm11 7h-6v3h2v12h2v-12h2v-3zm-2-7h-2v5h2v-5zm11 14h-6v3h2v5h2v-5h2v-3zm-2-14h-2v12h2v-12z"
-              />
-            </svg>
-          </button>
-          <button>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M12 10v-4c0-3.313-2.687-6-6-6s-6 2.687-6 6v3h2v-3c0-2.206 1.794-4 4-4s4 1.794 4 4v4h-4v14h18v-14h-12z"
-              />
-            </svg>
-          </button>
+          <div class="color-control " data-control="4">
+            <button class="close-color-control">x</button>
+            <label for="hue-control">Hue</label>
+            <input type="range" min="0" max="360" step="1" name="hue" id="hue">
+            <label for="brightness">brightness</label>
+            <input type="range" min="0" max="1" step=".01" name="brightness" id="brightness">
+            <label for="Saturation" min="0" max="100" step="1">Saturation</label>
+            <input type="range" name="saturation" id="saturation">
+          </div>
         </div>
       </section>
+      
       <section class="controls">
         <div class="control-button-container">
           <button id="library-button">
@@ -211,7 +257,7 @@
 
     <div class="modal-container">
       <div class="modal save-modal">
-        <button class="close">
+        <button class="close" data-close-button = "0">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -234,7 +280,7 @@
 
     <div class="modal-container">
       <div class="modal copied-modal">
-        <button class="close">
+        <button class="close" data-close-button = "1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
