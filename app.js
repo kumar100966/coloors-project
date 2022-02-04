@@ -1,4 +1,4 @@
-// Selectors
+// Selectors and Variables
 
 const saveButton = document.querySelector("#save-button");
 const libraryButton = document.querySelector("#library-button");
@@ -9,10 +9,10 @@ const copiedModalExitButton = exitButtons[1];
 const copiedModal = copiedModalExitButton.parentElement;
 const libraryModalExitButton = exitButtons[2];
 const libraryModal = libraryModalExitButton.parentElement;
-const paletteHeaders = document.querySelectorAll(".hex-value");
-const colorPanelButtons = document.querySelectorAll(".activate-panel");
+const palettes = document.querySelectorAll(".palette");
+const paletteHeaders = [...palettes].map((palette) => palette.children[0]);
+const colorPanelButtons = [...palettes].map((palette) => palette.children[1]);
 const colorControlPanels = document.querySelectorAll(".color-control");
-
 // Retrieving buttons from the color palette control panels
 const closeColorPanelButtons = [...colorControlPanels].map(
   (panel) => panel.firstElementChild
@@ -77,3 +77,13 @@ function toggleModal(modal, activeClass, useModalParent = true) {
 
   modal.classList.toggle(activeClass);
 }
+
+function applyRandomColorToPalette() {
+  palettes.forEach((palette, index) => {
+    const randomColor = chroma.random();
+    paletteHeaders[index].innerText = randomColor;
+    palette.style.background = `${randomColor}`;
+  });
+}
+
+applyRandomColorToPalette();
