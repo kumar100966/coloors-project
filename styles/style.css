@@ -93,10 +93,10 @@ section.colors {
   color: grey;
   border-top-left-radius: 1.5rem;
   border-top-right-radius: 1.5rem;
-  -webkit-transition: opacity 1s ease, -webkit-transform 1s ease;
-  transition: opacity 1s ease, -webkit-transform 1s ease;
-  transition: transform 1s ease, opacity 1s ease;
-  transition: transform 1s ease, opacity 1s ease, -webkit-transform 1s ease;
+  -webkit-transition: visibility 1s ease, opacity 1s ease, -webkit-transform 1s ease;
+  transition: visibility 1s ease, opacity 1s ease, -webkit-transform 1s ease;
+  transition: transform 1s ease, visibility 1s ease, opacity 1s ease;
+  transition: transform 1s ease, visibility 1s ease, opacity 1s ease, -webkit-transform 1s ease;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -110,6 +110,7 @@ section.colors {
   -webkit-box-align: stretch;
       -ms-flex-align: stretch;
           align-items: stretch;
+  visibility: hidden;
   opacity: 0;
 }
 
@@ -131,6 +132,7 @@ section.colors {
 .color-control-active {
   -webkit-transform: translateY(-100%);
           transform: translateY(-100%);
+  visibility: visible;
   opacity: 1;
 }
 
@@ -178,7 +180,16 @@ section.controls label {
   height: 100vh;
   width: 100vw;
   z-index: 3;
-  display: none;
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: visibility .5s ease, opacity .5s ease;
+  transition: visibility .5s ease, opacity .5s ease;
+}
+
+.modal-container-active {
+  visibility: visible;
+  opacity: 1;
 }
 
 .modal {
@@ -293,9 +304,5 @@ section.controls label {
   -webkit-box-align: auto;
       -ms-flex-align: auto;
           align-items: auto;
-}
-
-.modal-container-active {
-  display: block;
 }
 /*# sourceMappingURL=style.css.map */
