@@ -6,7 +6,9 @@ const saveModal = modals[0];
 const copiedModal = modals[1];
 const exitButtons = document.querySelectorAll(".close");
 const saveModalExitButton = exitButtons[0];
-const closeModalExitButton = exitButtons[1];
+const copiedModalExitButton = exitButtons[1];
+const libraryModalExitButton = exitButtons[2];
+const libraryButton = document.querySelector("#library-button");
 const paletteHeaders = document.querySelectorAll(".hex-value");
 const colorPanelButtons = document.querySelectorAll("button.activate-panel");
 const colorControlPanels = document.querySelectorAll(".color-control");
@@ -25,12 +27,22 @@ saveModalExitButton.addEventListener("click", function (event) {
 });
 
 paletteHeaders.forEach((paletteHeader) => addListenertoHeader(paletteHeader));
-closeModalExitButton.addEventListener("click", function (event) {
+copiedModalExitButton.addEventListener("click", function (event) {
   toggleModal(copiedModal);
 });
 
 colorPanelButtons.forEach((colorPanelButton, index) => {
   addListenersToTogglePanel(colorPanelButton, index);
+});
+
+libraryButton.addEventListener("click", function () {
+  libraryModalExitButton.parentElement.parentElement.classList.toggle(
+    "modal-container-active"
+  );
+});
+
+libraryModalExitButton.addEventListener("click", function () {
+  this.parentElement.parentElement.classList.toggle("modal-container-active");
 });
 
 // Functions
@@ -42,7 +54,6 @@ function addListenertoHeader(paletteHeader) {
 }
 
 function toggleModal(modal) {
-  modal.classList.toggle("modal-active");
   modal.parentElement.classList.toggle("modal-container-active");
 }
 

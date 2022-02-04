@@ -45,6 +45,7 @@ section.colors{
     min-height: 80vh;
     @include flex(row); 
     overflow: hidden;
+
 }
 
 .palette{
@@ -57,6 +58,7 @@ section.colors{
 
     header{
         margin-bottom: 20rem;
+        cursor: pointer;
     }
 
     button{
@@ -80,10 +82,9 @@ section.colors{
     color: grey; 
     border-top-left-radius: 1.5rem; 
     border-top-right-radius: 1.5rem; 
-    transition: transform 1s ease; 
+    transition: transform 1s ease, opacity 1s ease; 
     @include flex(column, auto, stretch);
-    
-    
+    // opacity: 0;
     .close-color-control{
         margin: 0; 
         color: white; 
@@ -102,7 +103,7 @@ section.colors{
 
 .color-control-active{
     transform: translateY(-100%); 
-    @include flex(column, auto, stretch);
+    //  
 }
 
 // Controls Section
@@ -110,7 +111,7 @@ section.colors{
 section.controls{
     position: relative;
     min-height: 20vh;  
-    @include flex(row, space-around, center); 
+    @include flex(row, space-around, center);
 
     button{
         display: block;
@@ -153,7 +154,6 @@ section.controls{
     border-radius: 2rem; 
     min-height: 30rem;
     width: 40%; 
-    display: none; 
     @include flex(column, flex-start, auto); 
 
     button.close{
@@ -205,9 +205,21 @@ section.controls{
     }
 }
 
-.modal-active{
-    display: flex; 
+.library-modal{
+    header{
+        align-self: center;
+        margin: 4rem 0; 
+    }
+
+    ul{
+        li{
+            margin: 1rem 0; 
+            @include flex(row, space-around, auto); 
+        }
+    }
 }
+
+
 
 .modal-container-active{
     display: block; 

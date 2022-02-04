@@ -70,6 +70,7 @@ section.colors {
 
 .palette header {
   margin-bottom: 20rem;
+  cursor: pointer;
 }
 
 .palette button {
@@ -92,10 +93,10 @@ section.colors {
   color: grey;
   border-top-left-radius: 1.5rem;
   border-top-right-radius: 1.5rem;
-  -webkit-transition: -webkit-transform 1s ease;
-  transition: -webkit-transform 1s ease;
-  transition: transform 1s ease;
-  transition: transform 1s ease, -webkit-transform 1s ease;
+  -webkit-transition: opacity 1s ease, -webkit-transform 1s ease;
+  transition: opacity 1s ease, -webkit-transform 1s ease;
+  transition: transform 1s ease, opacity 1s ease;
+  transition: transform 1s ease, opacity 1s ease, -webkit-transform 1s ease;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -129,19 +130,6 @@ section.colors {
 .color-control-active {
   -webkit-transform: translateY(-100%);
           transform: translateY(-100%);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: auto;
-      -ms-flex-pack: auto;
-          justify-content: auto;
-  -webkit-box-align: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
 }
 
 section.controls {
@@ -201,7 +189,6 @@ section.controls label {
   border-radius: 2rem;
   min-height: 30rem;
   width: 40%;
-  display: none;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -283,10 +270,27 @@ section.controls label {
   padding: 2rem;
 }
 
-.modal-active {
+.library-modal header {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  margin: 4rem 0;
+}
+
+.library-modal ul li {
+  margin: 1rem 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: auto;
+      -ms-flex-align: auto;
+          align-items: auto;
 }
 
 .modal-container-active {
