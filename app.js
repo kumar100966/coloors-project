@@ -1,69 +1,79 @@
 // Selectors
 
-const saveButton = document.querySelector("button.save");
-const modals = document.querySelectorAll(".modal");
-const saveModal = modals[0];
-const copiedModal = modals[1];
+const saveButton = document.querySelector("#save-button");
+const libraryButton = document.querySelector("#library-button");
 const exitButtons = document.querySelectorAll(".close");
 const saveModalExitButton = exitButtons[0];
+const saveModal = saveModalExitButton.parentElement;
 const copiedModalExitButton = exitButtons[1];
+const copiedModal = copiedModalExitButton.parentElement;
 const libraryModalExitButton = exitButtons[2];
-const libraryButton = document.querySelector("#library-button");
+const libraryModal = libraryModalExitButton.parentElement;
 const paletteHeaders = document.querySelectorAll(".hex-value");
-const colorPanelButtons = document.querySelectorAll("button.activate-panel");
+const colorPanelButtons = document.querySelectorAll(".activate-panel");
 const colorControlPanels = document.querySelectorAll(".color-control");
-const closeColorPanelButtons = document.querySelectorAll(
-  ".close-color-control"
+
+// Retrieving buttons from the color palette control panels
+const closeColorPanelButtons = [...colorControlPanels].map(
+  (panel) => panel.firstElementChild
 );
 
-// Event Listeners
+// Main
 
-saveButton.addEventListener("click", function (event) {
-  toggleModal(saveModal);
+const activeModalClass = "modal-container-active";
+
+enableModalToggle(saveButton, saveModal, activeModalClass);
+
+enableModalToggle(saveModalExitButton, saveModal, activeModalClass);
+
+paletteHeaders.forEach((paletteHeader) => {
+  enableModalToggle(paletteHeader, copiedModal, activeModalClass);
 });
 
-saveModalExitButton.addEventListener("click", function (event) {
-  toggleModal(saveModal);
-});
-
-paletteHeaders.forEach((paletteHeader) => addListenertoHeader(paletteHeader));
-copiedModalExitButton.addEventListener("click", function (event) {
-  toggleModal(copiedModal);
-});
+enableModalToggle(copiedModalExitButton, copiedModal, activeModalClass);
 
 colorPanelButtons.forEach((colorPanelButton, index) => {
   addListenersToTogglePanel(colorPanelButton, index);
 });
 
-libraryButton.addEventListener("click", function () {
-  libraryModalExitButton.parentElement.parentElement.classList.toggle(
-    "modal-container-active"
-  );
-});
-
-libraryModalExitButton.addEventListener("click", function () {
-  this.parentElement.parentElement.classList.toggle("modal-container-active");
-});
+enableModalToggle(libraryButton, libraryModal, activeModalClass);
+enableModalToggle(libraryModalExitButton, libraryModal, activeModalClass);
 
 // Functions
 
-function addListenertoHeader(paletteHeader) {
-  paletteHeader.addEventListener("click", function () {
-    toggleModal(copiedModal);
-  });
-}
-
-function toggleModal(modal) {
-  modal.parentElement.classList.toggle("modal-container-active");
-}
-
 function addListenersToTogglePanel(colorPanelButton, index) {
   const activeClass = "color-control-active";
-  colorPanelButton.addEventListener("click", function (event) {
-    colorControlPanels[index].classList.toggle(activeClass);
-  });
-
-  closeColorPanelButtons[index].addEventListener("click", () =>
-    colorControlPanels[index].classList.toggle(activeClass)
+  enableModalToggle(
+    colorPanelButton,
+    colorControlPanels[index],
+    activeClass,
+    false
   );
+
+  enableModalToggle(
+    closeColorPanelButtons[index],
+    colorControlPanels[index],
+    activeClass,
+    false
+  );
+}
+
+function enableModalToggle(
+  activatorElement,
+  modalActivated,
+  activeClass,
+  useModalParent
+) {
+  activatorElement.addEventListener("click", () => {
+    toggleModal(modalActivated, activeClass, useModalParent);
+  });
+}
+
+function toggleModal(modal, activeClass, useModalParent = true) {
+  if (useModalParent) {
+    modal.parentElement.classList.toggle(activeClass);
+    return;
+  }
+
+  modal.classList.toggle(activeClass);
 }

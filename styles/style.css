@@ -110,6 +110,7 @@ section.colors {
   -webkit-box-align: stretch;
       -ms-flex-align: stretch;
           align-items: stretch;
+  opacity: 0;
 }
 
 .color-control .close-color-control {
@@ -130,6 +131,7 @@ section.colors {
 .color-control-active {
   -webkit-transform: translateY(-100%);
           transform: translateY(-100%);
+  opacity: 1;
 }
 
 section.controls {
@@ -153,8 +155,8 @@ section.controls button {
   display: block;
   margin: auto;
   background: black;
-  height: 2.8rem;
-  width: 5rem;
+  height: 4rem;
+  width: 6rem;
   border: none;
   border-radius: 1rem;
 }
