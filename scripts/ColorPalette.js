@@ -31,19 +31,17 @@ class ColorPalette {
     const textColorHex = chroma(paletteComputedStyle.color).hex();
     switch (textColorHex) {
       case white:
-        this.colorPalette.style.color = black;
-        this.colorPalette.children[1].children[0].children[0].style.fill =
-          black;
-        this.colorPalette.children[2].children[0].children[0].style.fill =
-          black;
+        this.updatePaletteTextColor(black);
         break;
       case black:
-        this.colorPalette.style.color = white;
-        this.colorPalette.children[1].children[0].children[0].style.fill =
-          white;
-        this.colorPalette.children[2].children[0].children[0].style.fill =
-          white;
+        this.updatePaletteTextColor(white);
         break;
     }
+  }
+
+  updatePaletteTextColor(color) {
+    this.colorPalette.style.color = color;
+    this.colorPalette.children[1].children[0].children[0].style.fill = color;
+    this.colorPalette.children[2].children[0].children[0].style.fill = color;
   }
 }
