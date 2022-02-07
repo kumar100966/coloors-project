@@ -1,3 +1,5 @@
+//  Enumerator
+
 const modal = {
   save: 0,
   copied: 1,
@@ -15,6 +17,8 @@ const listOfPalettes = [...palettes];
 const palettesControlColourButtons = listOfPalettes.map(
   (palette) => palette.children[1]
 );
+
+const palettesHeaders = listOfPalettes.map((palette) => palette.children[0]);
 const colorControlPanels = document.getElementsByClassName("color-control");
 
 // Main
@@ -33,9 +37,9 @@ modals.push(
 );
 
 palettes.forEach(
-  (palette) =>
+  (palette, index) =>
     new Modal(modalElements[modal.copied], activeModalClass, true, [
-      palette.children[0],
+      palettesHeaders[index],
     ])
 );
 
@@ -49,4 +53,4 @@ const colorPalettes = listOfPalettes.map(
   (palette, index) => new ColorPalette(palette, colorControlModals[index])
 );
 
-colorPalettes.forEach((palette) => palette.applyRandomColorToPalette());
+// colorPalettes.forEach((palette) => palette.applyRandomColorToPalette());
