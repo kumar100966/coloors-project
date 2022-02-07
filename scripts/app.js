@@ -43,11 +43,12 @@ palettes.forEach(
     ])
 );
 
-const colorControlModals = [...colorControlPanels].map((panel, index) => {
-  new Modal(panel, "color-control-active", false, [
-    palettesControlColourButtons[index],
-  ]);
-});
+const colorControlModals = [...colorControlPanels].map(
+  (panel, index) =>
+    new Modal(panel, "color-control-active", false, [
+      palettesControlColourButtons[index],
+    ])
+);
 
 const colorPalettes = listOfPalettes.map(
   (palette, index) => new ColorPalette(palette, colorControlModals[index])
