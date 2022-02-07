@@ -1,8 +1,20 @@
-// Selectors
+const modal = {
+  save: 0,
+  copied: 1,
+  library: 2,
+};
+
+Object.freeze(modal);
+
+// Selectors and Variables
 const saveButton = document.querySelector("#save-button");
 const libraryButton = document.querySelector("#library-button");
-const controlSectionModalElements = document.querySelectorAll(".modal");
+const modalElements = document.querySelectorAll(".modal");
 const palettes = document.querySelectorAll(".palette");
+const listOfPalettes = [...palettes];
+const palettesControlColourButtons = listOfPalettes.map(
+  (palette) => palette.children[1]
+);
 const colorControlPanels = document.getElementsByClassName("color-control");
 
 // Main
@@ -11,31 +23,29 @@ const activeModalClass = "modal-container-active";
 const modals = [];
 
 modals.push(
-  new Modal(controlSectionModalElements[0], activeModalClass, true, [
-    saveButton,
-  ])
+  new Modal(modalElements[modal.save], activeModalClass, true, [saveButton])
 );
 
 modals.push(
-  new Modal(controlSectionModalElements[2], activeModalClass, true, [
+  new Modal(modalElements[modal.library], activeModalClass, true, [
     libraryButton,
   ])
 );
 
-const colorControlModals = [...colorControlPanels].map((panel, index) => {
-  new Modal(panel, "color-control-active", false, [
-    palettes[index].children[1],
-  ]);
-});
-
 palettes.forEach(
   (palette) =>
-    new Modal(controlSectionModalElements[1], activeModalClass, true, [
+    new Modal(modalElements[modal.copied], activeModalClass, true, [
       palette.children[0],
     ])
 );
 
-const colorPalettes = [...palettes].map(
+const colorControlModals = [...colorControlPanels].map((panel, index) => {
+  new Modal(panel, "color-control-active", false, [
+    palettesControlColourButtons[index],
+  ]);
+});
+
+const colorPalettes = listOfPalettes.map(
   (palette, index) => new ColorPalette(palette, colorControlModals[index])
 );
 
