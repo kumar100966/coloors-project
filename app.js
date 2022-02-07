@@ -9,10 +9,13 @@ const copiedModalExitButton = exitButtons[1];
 const copiedModal = copiedModalExitButton.parentElement;
 const libraryModalExitButton = exitButtons[2];
 const libraryModal = libraryModalExitButton.parentElement;
+
 const palettes = document.querySelectorAll(".palette");
-const paletteHeaders = [...palettes].map((palette) => palette.children[0]);
-const colorPanelButtons = [...palettes].map((palette) => palette.children[1]);
 const colorControlPanels = document.querySelectorAll(".color-control");
+const colorPalettes = [...palettes].map(
+  (palette, index) => new ColorPalette(palette, colorControlPanels[index])
+);
+
 // Retrieving buttons from the color palette control panels
 const closeColorPanelButtons = [...colorControlPanels].map(
   (panel) => panel.firstElementChild
@@ -26,18 +29,17 @@ enableModalToggle(saveButton, saveModal, activeModalClass);
 
 enableModalToggle(saveModalExitButton, saveModal, activeModalClass);
 
-paletteHeaders.forEach((paletteHeader) => {
-  enableModalToggle(paletteHeader, copiedModal, activeModalClass);
+colorPalettes.forEach((palette, index) => {
+  enableModalToggle(palette.paletteHeader, copiedModal, activeModalClass);
+  addListenersToTogglePanel(palette.colorControlButton, index);
 });
 
 enableModalToggle(copiedModalExitButton, copiedModal, activeModalClass);
 
-colorPanelButtons.forEach((colorPanelButton, index) => {
-  addListenersToTogglePanel(colorPanelButton, index);
-});
-
 enableModalToggle(libraryButton, libraryModal, activeModalClass);
 enableModalToggle(libraryModalExitButton, libraryModal, activeModalClass);
+
+colorPalettes.forEach((palette) => palette.applyRandomColorToPalette());
 
 // Functions
 
@@ -45,14 +47,14 @@ function addListenersToTogglePanel(colorPanelButton, index) {
   const activeClass = "color-control-active";
   enableModalToggle(
     colorPanelButton,
-    colorControlPanels[index],
+    colorPalettes[index].colorControlPanel,
     activeClass,
     false
   );
 
   enableModalToggle(
     closeColorPanelButtons[index],
-    colorControlPanels[index],
+    colorPalettes[index].colorControlPanel,
     activeClass,
     false
   );
@@ -77,13 +79,3 @@ function toggleModal(modal, activeClass, useModalParent = true) {
 
   modal.classList.toggle(activeClass);
 }
-
-function applyRandomColorToPalette() {
-  palettes.forEach((palette, index) => {
-    const randomColor = chroma.random();
-    paletteHeaders[index].innerText = randomColor;
-    palette.style.background = `${randomColor}`;
-  });
-}
-
-applyRandomColorToPalette();

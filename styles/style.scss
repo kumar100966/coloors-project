@@ -50,10 +50,8 @@ section.colors{
 
 .palette{
     flex: 1 1 40rem;
-    border: 1px solid white;
     color: white; 
     @include flex(column, center, center); 
-    background: rgb(70, 38, 214); 
     position: relative; 
 
     header{
