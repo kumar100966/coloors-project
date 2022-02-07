@@ -1,8 +1,7 @@
-// Selectors and Variables
+// Selectors
 const saveButton = document.querySelector("#save-button");
 const libraryButton = document.querySelector("#library-button");
 const controlSectionModalElements = document.querySelectorAll(".modal");
-
 const palettes = document.querySelectorAll(".palette");
 const colorControlPanels = document.getElementsByClassName("color-control");
 
