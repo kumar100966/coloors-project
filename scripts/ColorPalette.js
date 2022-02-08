@@ -13,16 +13,26 @@ class ColorPalette {
   }
 
   addEventListenerOnRangeInputs() {
-    this.hueInput.addEventListener("input", () => {
-      this.backgroundColorHSL[0] = parseInt(this.hueInput.value);
-      this.applyColorToPalette(false);
-    });
-    this.saturationInput.addEventListener("input", () => {
-      this.backgroundColorHSL[1] = parseInt(this.saturationInput.value);
-      this.applyColorToPalette(false);
-    });
-    this.brightnessInput.addEventListener("input", () => {
-      this.backgroundColorHSL[2] = parseInt(this.brightnessInput.value);
+    this.addEventListenerOnRangeInput(this.hueInput);
+    this.addEventListenerOnRangeInput(this.saturationInput);
+    this.addEventListenerOnRangeInput(this.brightnessInput);
+  }
+
+  addEventListenerOnRangeInput(rangeInput) {
+    let hslIndex;
+    switch (rangeInput) {
+      case this.hueInput:
+        hslIndex = 0;
+        break;
+      case this.saturationInput:
+        hslIndex = 1;
+        break;
+      case this.brightnessInput:
+        hslIndex = 2;
+        break;
+    }
+    rangeInput.addEventListener("input", () => {
+      this.backgroundColorHSL[hslIndex] = parseInt(rangeInput.value);
       this.applyColorToPalette(false);
     });
   }
