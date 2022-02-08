@@ -6,6 +6,7 @@ class ColorPalette {
     this.hueInput = this.colorControlModal.modal.children[2];
     this.brightnessInput = this.colorControlModal.modal.children[4];
     this.saturationInput = this.colorControlModal.modal.children[6];
+
     this.backgroundColor;
     this.backgroundColorHSL;
     this.applyColorToPalette();
@@ -41,13 +42,19 @@ class ColorPalette {
     if (random) {
       this.backgroundColor = chroma.random();
       this.backgroundColorHSL = this.backgroundColor.hsl();
+      this.updateColorControlPanel();
     } else {
-      console.log(this.backgroundColorHSL);
       this.backgroundColor = chroma(this.backgroundColorHSL, "hsl");
     }
     this.paletteHeader.innerText = this.backgroundColor;
     this.colorPalette.style.background = `${this.backgroundColor}`;
     this.checkLabelContrast();
+  }
+
+  updateColorControlPanel() {
+    this.hueInput.value = this.backgroundColorHSL[0];
+    this.saturationInput.value = this.backgroundColorHSL[1];
+    this.brightnessInput.value = this.backgroundColorHSL[2];
   }
 
   checkLabelContrast() {
