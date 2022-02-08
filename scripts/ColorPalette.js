@@ -14,27 +14,11 @@ class ColorPalette {
   }
 
   addEventListenerOnRangeInputs() {
-    for (let input of this.rangeInputs)
-      this.addEventListenerOnRangeInput(input);
-  }
-
-  addEventListenerOnRangeInput(rangeInput) {
-    let hslIndex;
-    switch (rangeInput) {
-      case this.hueInput:
-        hslIndex = 0;
-        break;
-      case this.saturationInput:
-        hslIndex = 1;
-        break;
-      case this.brightnessInput:
-        hslIndex = 2;
-        break;
-    }
-    rangeInput.addEventListener("input", () => {
-      this.backgroundColorHSL[hslIndex] = parseInt(rangeInput.value);
-      this.applyColorToPalette(false);
-    });
+    for (const [hslIndex, rangeInput] of this.rangeInputs.entries())
+      rangeInput.addEventListener("input", () => {
+        this.backgroundColorHSL[hslIndex] = parseInt(rangeInput.value);
+        this.applyColorToPalette(false);
+      });
   }
 
   applyColorToPalette(random = true) {
