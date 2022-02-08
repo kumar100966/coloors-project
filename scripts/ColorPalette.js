@@ -15,6 +15,13 @@ class ColorPalette {
     this.backgroundColorHSL;
     this.applyColorToPalette();
     this.addEventListenerOnRangeInputs();
+    this.enableCopyHexToClipboard();
+  }
+
+  enableCopyHexToClipboard() {
+    this.paletteHeader.addEventListener("click", () => {
+      navigator.clipboard.writeText(this.paletteHeader.innerText);
+    });
   }
 
   addEventListenerOnRangeInputs() {
