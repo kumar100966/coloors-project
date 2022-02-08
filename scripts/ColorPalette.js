@@ -7,10 +7,10 @@ class ColorPalette {
     this.rangeInputs = [];
     // Hue range input
     this.rangeInputs.push(this.colorControlModal.modal.children[2]);
-    // luminosity range input
-    this.rangeInputs.push(this.colorControlModal.modal.children[4]);
     // Saturation range input
     this.rangeInputs.push(this.colorControlModal.modal.children[6]);
+    // luminosity range input
+    this.rangeInputs.push(this.colorControlModal.modal.children[4]);
     this.backgroundColor;
     this.backgroundColorHSL;
     this.applyColorToPalette();
@@ -20,7 +20,11 @@ class ColorPalette {
   addEventListenerOnRangeInputs() {
     for (const [hslIndex, rangeInput] of this.rangeInputs.entries())
       rangeInput.addEventListener("input", () => {
-        this.backgroundColorHSL[hslIndex] = parseInt(rangeInput.value);
+        if (hslIndex == 0) {
+          this.backgroundColorHSL[hslIndex] = parseInt(rangeInput.value);
+        } else {
+          this.backgroundColorHSL[hslIndex] = parseInt(rangeInput.value) / 100;
+        }
         this.applyColorToPalette(false);
       });
   }
@@ -29,6 +33,7 @@ class ColorPalette {
     if (random) {
       this.backgroundColor = chroma.random();
       this.backgroundColorHSL = this.backgroundColor.hsl();
+
       this.updateColorControlPanel();
     } else {
       this.backgroundColor = chroma(this.backgroundColorHSL, "hsl");
