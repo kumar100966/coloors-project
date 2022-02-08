@@ -2,10 +2,14 @@ class ColorPalette {
   constructor(colorPalette, colorControlModal) {
     this.colorPalette = colorPalette;
     this.paletteHeader = this.colorPalette.children[0];
+    // Palette Control Panel
     this.colorControlModal = colorControlModal;
     this.rangeInputs = [];
+    // Hue range input
     this.rangeInputs.push(this.colorControlModal.modal.children[2]);
+    // luminosity range input
     this.rangeInputs.push(this.colorControlModal.modal.children[4]);
+    // Saturation range input
     this.rangeInputs.push(this.colorControlModal.modal.children[6]);
     this.backgroundColor;
     this.backgroundColorHSL;
@@ -32,6 +36,16 @@ class ColorPalette {
     this.paletteHeader.innerText = this.backgroundColor;
     this.colorPalette.style.background = `${this.backgroundColor}`;
     this.checkLabelContrast();
+    this.setRangeInputsBackgroundImage();
+  }
+
+  setRangeInputsBackgroundImage() {
+    const currentPaletteColor = chroma(this.backgroundColor);
+    const minSaturation = currentPaletteColor.set("hsl.s", 0);
+    const maxSaturation = currentPaletteColor.set("hsl.s", 1);
+    this.rangeInputs[2].style.background = `linear-gradient(to right, ${minSaturation}, ${maxSaturation})`;
+    const midBrightness = currentPaletteColor.set("hsl.l", 0.5);
+    this.rangeInputs[1].style.background = `linear-gradient(to right, black, ${midBrightness}, white)`;
   }
 
   updateColorControlPanel() {

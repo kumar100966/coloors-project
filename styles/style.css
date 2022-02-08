@@ -127,6 +127,18 @@ section.colors {
   margin: .8rem;
 }
 
+.color-control input {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border-radius: 1rem;
+}
+
+.color-control #hue {
+  background-image: -webkit-gradient(linear, left top, right top, from(#cc4b4b), color-stop(#cccc4b), color-stop(#4bcc4b), color-stop(#4bcccc), color-stop(#4b4bcc), color-stop(#cc4bcc), to(#cc4b4b));
+  background-image: linear-gradient(to right, #cc4b4b, #cccc4b, #4bcc4b, #4bcccc, #4b4bcc, #cc4bcc, #cc4b4b);
+}
+
 .color-control-active {
   -webkit-transform: translateY(-100%);
           transform: translateY(-100%);
