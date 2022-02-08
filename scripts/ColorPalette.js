@@ -3,10 +3,10 @@ class ColorPalette {
     this.colorPalette = colorPalette;
     this.paletteHeader = this.colorPalette.children[0];
     this.colorControlModal = colorControlModal;
-    this.hueInput = this.colorControlModal.modal.children[2];
-    this.brightnessInput = this.colorControlModal.modal.children[4];
-    this.saturationInput = this.colorControlModal.modal.children[6];
-
+    this.rangeInputs = [];
+    this.rangeInputs.push(this.colorControlModal.modal.children[2]);
+    this.rangeInputs.push(this.colorControlModal.modal.children[4]);
+    this.rangeInputs.push(this.colorControlModal.modal.children[6]);
     this.backgroundColor;
     this.backgroundColorHSL;
     this.applyColorToPalette();
@@ -14,9 +14,8 @@ class ColorPalette {
   }
 
   addEventListenerOnRangeInputs() {
-    this.addEventListenerOnRangeInput(this.hueInput);
-    this.addEventListenerOnRangeInput(this.saturationInput);
-    this.addEventListenerOnRangeInput(this.brightnessInput);
+    for (let input of this.rangeInputs)
+      this.addEventListenerOnRangeInput(input);
   }
 
   addEventListenerOnRangeInput(rangeInput) {
@@ -52,9 +51,8 @@ class ColorPalette {
   }
 
   updateColorControlPanel() {
-    this.hueInput.value = this.backgroundColorHSL[0];
-    this.saturationInput.value = this.backgroundColorHSL[1];
-    this.brightnessInput.value = this.backgroundColorHSL[2];
+    for (const [index, rangeInput] of this.rangeInputs.entries())
+      rangeInput.value = this.backgroundColorHSL[index];
   }
 
   checkLabelContrast() {
@@ -87,7 +85,8 @@ class ColorPalette {
     this.color = color;
     this.colorPalette.style.color = color;
     // Update the svg fill colors
-    this.colorPalette.children[1].children[0].children[0].style.fill = color;
-    this.colorPalette.children[2].children[0].children[0].style.fill = color;
+    for (let index = 1; index < 3; index++)
+      this.colorPalette.children[index].children[0].children[0].style.fill =
+        color;
   }
 }
