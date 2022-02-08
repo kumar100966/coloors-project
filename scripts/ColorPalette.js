@@ -33,7 +33,6 @@ class ColorPalette {
     if (random) {
       this.backgroundColor = chroma.random();
       this.backgroundColorHSL = this.backgroundColor.hsl();
-
       this.updateColorControlPanel();
     } else {
       this.backgroundColor = chroma(this.backgroundColorHSL, "hsl");
@@ -48,14 +47,20 @@ class ColorPalette {
     const currentPaletteColor = chroma(this.backgroundColor);
     const minSaturation = currentPaletteColor.set("hsl.s", 0);
     const maxSaturation = currentPaletteColor.set("hsl.s", 1);
-    this.rangeInputs[2].style.background = `linear-gradient(to right, ${minSaturation}, ${maxSaturation})`;
+    // const scale = chroma.scale([minSaturation, maxSaturation]);
+    // this.rangeInputs[2].style.background = `linear-gradient(to right, ${scale(
+    //   0
+    // )}, ${scale(1)})`;
+    this.rangeInputs[1].style.background = `linear-gradient(to right, ${minSaturation}, ${maxSaturation})`;
     const midBrightness = currentPaletteColor.set("hsl.l", 0.5);
-    this.rangeInputs[1].style.background = `linear-gradient(to right, black, ${midBrightness}, white)`;
+    this.rangeInputs[2].style.background = `linear-gradient(to right, black, ${midBrightness}, white)`;
   }
 
   updateColorControlPanel() {
-    for (const [index, rangeInput] of this.rangeInputs.entries())
-      rangeInput.value = this.backgroundColorHSL[index];
+    for (const [index, rangeInput] of this.rangeInputs.entries()) {
+      if (index == 0) rangeInput.value = this.backgroundColorHSL[index];
+      else rangeInput.value = this.backgroundColorHSL[index] * 100;
+    }
   }
 
   checkLabelContrast() {
