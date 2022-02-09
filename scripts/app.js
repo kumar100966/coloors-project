@@ -11,6 +11,7 @@ Object.freeze(modal);
 // Selectors and Variables
 const saveButton = document.querySelector("#save-button");
 const libraryButton = document.querySelector("#library-button");
+const refreshButton = document.querySelector("#refresh-button");
 const modalElements = document.querySelectorAll(".modal");
 const palettes = document.querySelectorAll(".palette");
 const listOfPalettes = [...palettes];
@@ -53,4 +54,9 @@ const colorPalettes = listOfPalettes.map(
     new ColorPalette(palette, colorControlModals[index], copiedModal)
 );
 
-// colorPalettes.forEach((palette) => palette.applyRandomColorToPalette());
+const paletteControl = new PaletteControl(
+  colorPalettes,
+  saveButton,
+  libraryButton,
+  refreshButton
+);
