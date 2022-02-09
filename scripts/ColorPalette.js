@@ -2,6 +2,11 @@ class ColorPalette {
   constructor(colorPalette, colorControlModal, copiedModal) {
     this.colorPalette = colorPalette;
     this.paletteHeader = this.colorPalette.children[0];
+    // true unlocked, false locked
+    this.paletteState = true;
+    this.paletteStateButton = this.colorPalette.children[2];
+    this.unlockImage = this.paletteStateButton.children[0];
+    this.lockImage = this.paletteStateButton.children[1];
     // Palette Control Panel
     this.colorControlModal = colorControlModal;
     this.rangeInputs = [];
@@ -17,6 +22,25 @@ class ColorPalette {
     this.applyColorToPalette();
     this.addEventListenerOnRangeInputs();
     this.enableCopyHexToClipboard();
+    this.enablePanelLock();
+  }
+
+  enablePanelLock() {
+    this.paletteStateButton.addEventListener("click", () => {
+      this.togglePanelState();
+    });
+  }
+
+  togglePanelState() {
+    if (this.paletteState) {
+      this.paletteState = false;
+      this.lockImage.style.display = "inline";
+      this.unlockImage.style.display = "none";
+    } else {
+      this.paletteState = true;
+      this.lockImage.style.display = "none";
+      this.unlockImage.style.display = "inline";
+    }
   }
 
   enableCopyHexToClipboard() {
@@ -40,7 +64,7 @@ class ColorPalette {
   }
 
   applyColorToPalette(random = true) {
-    if (random) {
+    if (random && this.paletteState) {
       this.backgroundColor = chroma.random();
       this.backgroundColorHSL = this.backgroundColor.hsl();
       this.updateColorControlPanel();
@@ -103,8 +127,12 @@ class ColorPalette {
     this.color = color;
     this.colorPalette.style.color = color;
     // Update the svg fill colors
-    for (let index = 1; index < 3; index++)
-      this.colorPalette.children[index].children[0].children[0].style.fill =
-        color;
+    // Add fill to button containing svg containing path
+    // Update color control panel svg
+    this.colorPalette.children[1].children[0].children[0].style.fill = color;
+    // Update lock and unlock svg
+    for (let i = 0; i < 2; i++) {
+      this.colorPalette.children[2].children[i].children[0].style.fill = color;
+    }
   }
 }
