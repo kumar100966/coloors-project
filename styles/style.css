@@ -319,4 +319,10 @@ section.controls label {
       -ms-flex-align: auto;
           align-items: auto;
 }
+
+@media screen and (max-width: 500px) {
+  html {
+    font-size: 40%;
+  }
+}
 /*# sourceMappingURL=style.css.map */

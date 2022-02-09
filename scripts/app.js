@@ -9,9 +9,10 @@ const modal = {
 Object.freeze(modal);
 
 // Selectors and Variables
-const saveButton = document.querySelector("#save-button");
-const libraryButton = document.querySelector("#library-button");
-const refreshButton = document.querySelector("#refresh-button");
+const controllerButtons = {};
+controllerButtons.saveButton = document.querySelector("#save-button");
+controllerButtons.libraryButton = document.querySelector("#library-button");
+controllerButtons.refreshButton = document.querySelector("#refresh-button");
 const modalElements = document.querySelectorAll(".modal");
 const palettes = document.querySelectorAll(".palette");
 const listOfPalettes = [...palettes];
@@ -27,12 +28,14 @@ const activeModalClass = "modal-container-active";
 const modals = [];
 
 modals.push(
-  new Modal(modalElements[modal.save], activeModalClass, true, [saveButton])
+  new Modal(modalElements[modal.save], activeModalClass, true, [
+    controllerButtons.saveButton,
+  ])
 );
 
 modals.push(
   new Modal(modalElements[modal.library], activeModalClass, true, [
-    libraryButton,
+    controllerButtons.libraryButton,
   ])
 );
 
@@ -54,9 +57,7 @@ const colorPalettes = listOfPalettes.map(
     new ColorPalette(palette, colorControlModals[index], copiedModal)
 );
 
-const paletteControl = new PaletteControl(
-  colorPalettes,
-  saveButton,
-  libraryButton,
-  refreshButton
-);
+const paletteControl = new PaletteControl(colorPalettes, controllerButtons, {
+  libraryModal: modalElements[modal.library],
+  saveModal: modalElements[modal.save],
+});
