@@ -1,5 +1,5 @@
 class ColorPalette {
-  constructor(colorPalette, colorControlModal) {
+  constructor(colorPalette, colorControlModal, copiedModal) {
     this.colorPalette = colorPalette;
     this.paletteHeader = this.colorPalette.children[0];
     // Palette Control Panel
@@ -13,6 +13,7 @@ class ColorPalette {
     this.rangeInputs.push(this.colorControlModal.modal.children[4]);
     this.backgroundColor;
     this.backgroundColorHSL;
+    this.copiedModal = copiedModal;
     this.applyColorToPalette();
     this.addEventListenerOnRangeInputs();
     this.enableCopyHexToClipboard();
@@ -20,7 +21,9 @@ class ColorPalette {
 
   enableCopyHexToClipboard() {
     this.paletteHeader.addEventListener("click", () => {
-      navigator.clipboard.writeText(this.paletteHeader.innerText);
+      navigator.clipboard
+        .writeText(this.paletteHeader.innerText)
+        .then(() => this.copiedModal.toggleModal());
     });
   }
 

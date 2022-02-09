@@ -18,7 +18,6 @@ const palettesControlColourButtons = listOfPalettes.map(
   (palette) => palette.children[1]
 );
 
-const palettesHeaders = listOfPalettes.map((palette) => palette.children[0]);
 const colorControlPanels = document.getElementsByClassName("color-control");
 
 // Main
@@ -36,11 +35,10 @@ modals.push(
   ])
 );
 
-palettes.forEach(
-  (palette, index) =>
-    new Modal(modalElements[modal.copied], activeModalClass, true, [
-      palettesHeaders[index],
-    ])
+const copiedModal = new Modal(
+  modalElements[modal.copied],
+  activeModalClass,
+  true
 );
 
 const colorControlModals = [...colorControlPanels].map(
@@ -51,7 +49,8 @@ const colorControlModals = [...colorControlPanels].map(
 );
 
 const colorPalettes = listOfPalettes.map(
-  (palette, index) => new ColorPalette(palette, colorControlModals[index])
+  (palette, index) =>
+    new ColorPalette(palette, colorControlModals[index], copiedModal)
 );
 
 // colorPalettes.forEach((palette) => palette.applyRandomColorToPalette());
