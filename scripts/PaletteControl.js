@@ -47,34 +47,53 @@ class PaletteControl {
   }
 
   updateLibraryContent() {
+    // index to set unique id for each savedPalette
     let i = 0;
     this.savedPalettesList.innerText = "";
     for (let namedPalette in this.storage) {
       let listElement = document.createElement("li");
-      let labelElement = document.createElement("label");
-      labelElement.setAttribute("for", `entry${i}`);
-      labelElement.innerText = `${namedPalette}`;
-      listElement.appendChild(labelElement);
-      let savedColorsDiv = document.createElement("div");
-      savedColorsDiv.classList.add("saved-colors");
-      savedColorsDiv.id = `entry${i}`;
-      i++;
-      this.storage[namedPalette].forEach((color) => {
-        let boxDiv = document.createElement("div");
-        boxDiv.classList.add("color");
-        boxDiv.style.background = color;
-        savedColorsDiv.appendChild(boxDiv);
-      });
-      let selectButton = document.createElement("button");
-      selectButton.classList.add("color");
-      selectButton.innerText = `Select`;
-      selectButton.addEventListener("click", (e) => {
-        this.activatePalette(e);
-      });
-      savedColorsDiv.appendChild(selectButton);
-      listElement.appendChild(savedColorsDiv);
+      listElement.appendChild(this.createLabelElement(namedPalette, i));
+      listElement.appendChild(
+        this.createSavedPaletteCollection(namedPalette, i)
+      );
       this.savedPalettesList.appendChild(listElement);
+      i++;
     }
+  }
+
+  createLabelElement(innerText, idIndex) {
+    let labelElement = document.createElement("label");
+    labelElement.setAttribute("for", `entry${idIndex}`);
+    labelElement.innerText = `${innerText}`;
+    return labelElement;
+  }
+
+  createSavedPaletteCollection(namedPalette, idIndex) {
+    let savedColorsDiv = document.createElement("div");
+    savedColorsDiv.classList.add("saved-colors");
+    savedColorsDiv.id = `entry${idIndex}`;
+    this.storage[namedPalette].forEach((color) => {
+      savedColorsDiv.appendChild(this.createDivBoxElement(color));
+    });
+    savedColorsDiv.appendChild(this.createSelectButton());
+    return savedColorsDiv;
+  }
+
+  createDivBoxElement(color) {
+    let boxDiv = document.createElement("div");
+    boxDiv.classList.add("color");
+    boxDiv.style.background = color;
+    return boxDiv;
+  }
+
+  createSelectButton() {
+    let selectButton = document.createElement("button");
+    selectButton.classList.add("color");
+    selectButton.innerText = `Select`;
+    selectButton.addEventListener("click", (e) => {
+      this.activatePalette(e);
+    });
+    return selectButton;
   }
 
   activatePalette(e) {

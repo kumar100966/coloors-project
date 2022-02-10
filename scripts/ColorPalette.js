@@ -90,10 +90,6 @@ class ColorPalette {
     const currentPaletteColor = chroma(this.backgroundColor);
     const minSaturation = currentPaletteColor.set("hsl.s", 0);
     const maxSaturation = currentPaletteColor.set("hsl.s", 1);
-    // const scale = chroma.scale([minSaturation, maxSaturation]);
-    // this.rangeInputs[2].style.background = `linear-gradient(to right, ${scale(
-    //   0
-    // )}, ${scale(1)})`;
     this.rangeInputs[1].style.background = `linear-gradient(to right, ${minSaturation}, ${maxSaturation})`;
     const midBrightness = currentPaletteColor.set("hsl.l", 0.5);
     this.rangeInputs[2].style.background = `linear-gradient(to right, black, ${midBrightness}, white)`;

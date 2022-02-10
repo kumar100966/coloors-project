@@ -268,4 +268,19 @@ section.controls{
     html{
         font-size: 40%; 
     }
+
+    .modal{
+        width: 90%; 
+    }
+
+    .library-modal{
+        ul{
+            li{
+                @include flex(row, space-around, center); 
+                label{
+                    flex-basis: 10rem; 
+                }
+            }
+        }
+    }
 }
