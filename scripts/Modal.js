@@ -1,7 +1,7 @@
 class Modal {
   constructor(modal, activeClass, useModalParent = true, toggleElements = []) {
-    this.modal = modal;
-    this.toggleElements = [this.modal.children[0], ...toggleElements];
+    this.element = modal;
+    this.toggleElements = [this.element.children[0], ...toggleElements];
     this.activeClass = activeClass;
     this.useModalParent = useModalParent;
     this.enableModalToggle();
@@ -21,10 +21,10 @@ class Modal {
 
   toggleModal() {
     if (this.useModalParent) {
-      this.modal.parentElement.classList.toggle(this.activeClass);
+      this.element.parentElement.classList.toggle(this.activeClass);
       return;
     }
 
-    this.modal.classList.toggle(this.activeClass);
+    this.element.classList.toggle(this.activeClass);
   }
 }

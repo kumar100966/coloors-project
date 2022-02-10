@@ -11,11 +11,11 @@ class ColorPalette {
     this.colorControlModal = colorControlModal;
     this.rangeInputs = [];
     // Hue range input
-    this.rangeInputs.push(this.colorControlModal.modal.children[2]);
+    this.rangeInputs.push(this.colorControlModal.element.children[2]);
     // Saturation range input
-    this.rangeInputs.push(this.colorControlModal.modal.children[6]);
+    this.rangeInputs.push(this.colorControlModal.element.children[6]);
     // luminosity range input
-    this.rangeInputs.push(this.colorControlModal.modal.children[4]);
+    this.rangeInputs.push(this.colorControlModal.element.children[4]);
     this.backgroundColor;
     this.backgroundColorHSL;
     this.copiedModal = copiedModal;

@@ -18,9 +18,9 @@ class PaletteControl {
 
   enableSavePalette() {
     const submitButton =
-      this.modals.saveModal.modal.querySelector("#save-form button");
+      this.modals.saveModal.element.querySelector("#save-form button");
     const nameInput =
-      this.modals.saveModal.modal.querySelector("#palette-name");
+      this.modals.saveModal.element.querySelector("#palette-name");
     submitButton.addEventListener("click", (e) => {
       e.preventDefault();
       const savedPaletteName = nameInput.value;
