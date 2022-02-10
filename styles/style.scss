@@ -28,6 +28,9 @@ body{
 
 button{
     cursor: pointer; 
+    background: none; 
+    border: none; 
+    display: block;
 }
 
 .resize-svg{
@@ -60,9 +63,7 @@ section.colors{
     }
 
     button{
-        margin: 2rem 0; 
-        background: none; 
-        border: none; 
+        margin: 2rem 0;  
     }
 
     svg path{
@@ -128,7 +129,6 @@ section.controls{
     @include flex(row, space-around, center);
 
     button{
-        display: block;
         margin: auto; 
         background: black; 
         height: 4rem;
@@ -236,8 +236,27 @@ section.controls{
     ul{
         li{
             margin: 1rem 0; 
-            @include flex(row, space-around, auto); 
+            @include flex(row, space-around, center); 
         }
+    }
+}
+
+.saved-colors{
+    flex-basis: 30rem; 
+    @include flex(row); 
+    .color{
+        min-height: 6rem; 
+        flex: 1 1 2rem; 
+    }
+    .color:nth-child(6){
+        flex: 1 1 4rem ;
+    }
+
+    button.select-palette{
+        background:grey; 
+        min-height: 100%;
+        width: 100%; 
+        color: white; 
     }
 }
 

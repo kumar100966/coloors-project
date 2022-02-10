@@ -15,6 +15,9 @@ controllerButtons.libraryButton = document.querySelector("#library-button");
 controllerButtons.refreshButton = document.querySelector("#refresh-button");
 const modalElements = document.querySelectorAll(".modal");
 const palettes = document.querySelectorAll(".palette");
+const savedPalettesList = modalElements[modal.library].querySelector(
+  ".list-of-saved-palettes"
+);
 const listOfPalettes = [...palettes];
 const palettesControlColourButtons = listOfPalettes.map(
   (palette) => palette.children[1]
@@ -57,7 +60,12 @@ const colorPalettes = listOfPalettes.map(
     new ColorPalette(palette, colorControlModals[index], copiedModal)
 );
 
-const paletteControl = new PaletteControl(colorPalettes, controllerButtons, {
-  libraryModal: modalElements[modal.library],
-  saveModal: modalElements[modal.save],
-});
+const paletteControl = new PaletteControl(
+  colorPalettes,
+  controllerButtons,
+  {
+    libraryModal: modalElements[modal.library],
+    saveModal: modalElements[modal.save],
+  },
+  savedPalettesList
+);
