@@ -304,6 +304,11 @@ section.controls label {
   margin: 4rem 0;
 }
 
+.library-modal ul {
+  overflow: scroll;
+  max-height: 38rem;
+}
+
 .library-modal ul li {
   margin: 1rem 0;
   display: -webkit-box;
@@ -318,6 +323,11 @@ section.controls label {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.library-modal ul li label {
+  -ms-flex-preferred-size: 20rem;
+      flex-basis: 20rem;
 }
 
 .saved-colors {
@@ -349,12 +359,7 @@ section.controls label {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 4rem;
           flex: 1 1 4rem;
-}
-
-.saved-colors button.select-palette {
   background: grey;
-  min-height: 100%;
-  width: 100%;
   color: white;
 }
 

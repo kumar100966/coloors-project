@@ -228,15 +228,21 @@ section.controls{
 }
 
 .library-modal{
+    
     header{
         align-self: center;
         margin: 4rem 0; 
     }
 
     ul{
+        overflow: scroll;
+        max-height: 38rem; 
         li{
             margin: 1rem 0; 
             @include flex(row, space-around, center); 
+            label{
+                flex-basis: 20rem; 
+            }
         }
     }
 }
@@ -250,12 +256,7 @@ section.controls{
     }
     .color:nth-child(6){
         flex: 1 1 4rem ;
-    }
-
-    button.select-palette{
         background:grey; 
-        min-height: 100%;
-        width: 100%; 
         color: white; 
     }
 }

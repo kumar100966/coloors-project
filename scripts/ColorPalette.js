@@ -63,13 +63,22 @@ class ColorPalette {
       });
   }
 
+  setBackgroundColor(backgroundColor) {
+    const rgbArray = backgroundColor.slice(4, -1).split(",");
+    for (const [i, rgbValue] of rgbArray.entries())
+      rgbArray[i] = rgbValue.trim();
+    // const formatedRgbArray = rgbArray.map((rgbValue) => rgbValue.trim());
+    this.backgroundColorHSL = chroma(rgbArray).hsl();
+    this.applyColorToPalette(false);
+  }
+
   applyColorToPalette(random = true) {
     if (random && this.paletteState) {
       this.backgroundColor = chroma.random();
       this.backgroundColorHSL = this.backgroundColor.hsl();
       this.updateColorControlPanel();
     } else {
-      this.backgroundColor = chroma(this.backgroundColorHSL, "hsl");
+      this.backgroundColor = chroma(...this.backgroundColorHSL, "hsl");
     }
     this.paletteHeader.innerText = this.backgroundColor;
     this.colorPalette.style.background = `${this.backgroundColor}`;

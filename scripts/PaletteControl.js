@@ -7,6 +7,7 @@ class PaletteControl {
     this.savedPalettesList = savedPalettesList;
     this.enableColorRefresh();
     this.enableSavePalette();
+    this.readFromLocalStorage();
   }
 
   enableColorRefresh() {
@@ -17,8 +18,9 @@ class PaletteControl {
 
   enableSavePalette() {
     const submitButton =
-      this.modals.saveModal.querySelector("#save-form button");
-    const nameInput = this.modals.saveModal.querySelector("#palette-name");
+      this.modals.saveModal.modal.querySelector("#save-form button");
+    const nameInput =
+      this.modals.saveModal.modal.querySelector("#palette-name");
     submitButton.addEventListener("click", (e) => {
       e.preventDefault();
       const savedPaletteName = nameInput.value;
@@ -34,6 +36,7 @@ class PaletteControl {
     this.storage[nameOfPalette] = savedColors;
     this.writeToLocalStorage();
     this.readFromLocalStorage();
+    this.modals.saveModal.toggleModal();
   }
 
   readFromLocalStorage() {
@@ -45,6 +48,7 @@ class PaletteControl {
 
   updateLibraryContent() {
     let i = 0;
+    this.savedPalettesList.innerText = "";
     for (let namedPalette in this.storage) {
       let listElement = document.createElement("li");
       let labelElement = document.createElement("label");
@@ -61,13 +65,26 @@ class PaletteControl {
         boxDiv.style.background = color;
         savedColorsDiv.appendChild(boxDiv);
       });
-      let selectButton = document.createElement("div");
+      let selectButton = document.createElement("button");
       selectButton.classList.add("color");
-      selectButton.innerHTML = `<button class="select-palette">Select</button>`;
+      selectButton.innerText = `Select`;
+      selectButton.addEventListener("click", (e) => {
+        this.activatePalette(e);
+      });
       savedColorsDiv.appendChild(selectButton);
       listElement.appendChild(savedColorsDiv);
       this.savedPalettesList.appendChild(listElement);
     }
+  }
+
+  activatePalette(e) {
+    const savedPaletteDivs = [...e.target.parentElement.children];
+    // removes the button from the list
+    savedPaletteDivs.pop();
+    this.colorPalettes.forEach((palette, i) => {
+      let backgroundColor = savedPaletteDivs[i].style.backgroundColor;
+      palette.setBackgroundColor(backgroundColor);
+    });
   }
 
   writeToLocalStorage() {

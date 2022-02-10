@@ -64,8 +64,8 @@ const paletteControl = new PaletteControl(
   colorPalettes,
   controllerButtons,
   {
-    libraryModal: modalElements[modal.library],
-    saveModal: modalElements[modal.save],
+    libraryModal: modals[modal.library],
+    saveModal: modals[modal.save],
   },
   savedPalettesList
 );
